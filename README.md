@@ -27,7 +27,7 @@
 
 ## Current function
 
-- Bot will receive and record data from Twitch chats. It will store them in a folder base storage system. Will have limited number of commands and possibly the ability to respond by chatGPT
+- Bot will receive and record data from Twitch chats. It will store them in a folder base storage system.
 
 ## Commands list
 
