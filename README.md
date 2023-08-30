@@ -6,13 +6,13 @@
   - channels.json
     <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto;">
     {
-    "channels": ["channel name", "", ""] // multiples can be included
+    "channels": ["channel name", "channel name", "channel name"] // multiples can be included
     }
     </div>
   - keys.json
     <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto;">
     {
-    "username": "TWTICH_USERNAME",
+    "username": "TWICH_USERNAME",
     "password": "oauth:key",
     "openai": "key"
     }
@@ -40,17 +40,3 @@
 ## Current goals/roadmap
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
-
-Keys.json looks like
-
-{
-"username": "TWTICH_USERNAME",
-"password": "oauth:key",
-"openai": "key"
-}
-
-settings.json looks like
-
-{
-"channels": ["channel name", "", ""] // multiples can be included
-}
