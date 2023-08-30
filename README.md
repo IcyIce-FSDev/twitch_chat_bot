@@ -39,11 +39,25 @@
 
   - This feature gets a random slip of advice from https://api.adviceslip.com/advice
 
+  - `!advice on | off`
+
+    - Enables or disables the command to in individuals chat
+
 ## Utilities
 
 - Saves every message in channel folder then by date message received
   - Filters out bot messages
 
 ## Current goals/roadmap
+
+- Develop `!advice` further to include below features
+
+  - `!advice on | off`
+
+    - Enables or disables the command to in individuals chat
+
+  - `!advice random on | off`
+
+    - Allows for bot to random trigger messages in the channel
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
