@@ -4,14 +4,18 @@
 
 - Will need to create two json files in root dir.
   - channels.json
-    <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin-bottom: 20px;">
-    {"channels": ["channel name", "", ""] // multiples can be included}
+    <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto;">
+    {
+    "channels": ["channel name", "", ""] // multiples can be included
+    }
     </div>
   - keys.json
-  <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin-bottom: 20px;">
-  {"username": "TWTICH_USERNAME",
-  "password": "oauth:key",
-  "openai": "key"}
+    <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto;">
+    {
+    "username": "TWTICH_USERNAME",
+    "password": "oauth:key",
+    "openai": "key"
+    }
     </div>
 
 ## Current function
