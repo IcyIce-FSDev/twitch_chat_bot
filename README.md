@@ -39,10 +39,6 @@
 
   - This feature gets a random slip of advice from https://api.adviceslip.com/advice
 
-  - `!advice on | off`
-
-    - Enables or disables the command to in individuals chat
-
 ## Utilities
 
 - Saves every message in channel folder then by date message received
