@@ -29,6 +29,8 @@
 
 - Bot will receive and record data from Twitch chats. It will store them in a folder base storage system.
 
+## Require Modules to use
+
 ## Commands list
 
 - `!dice`
@@ -38,6 +40,14 @@
 - `!advice`
 
   - This feature gets a random slip of advice from https://api.adviceslip.com/advice
+
+- `!rank`
+
+  - Returns the rank of the stream if they set Battletag
+
+  - `!rank (BattleTag#)*`
+
+    - This feature returns the current ranks of provided user
 
 ## Utilities
 
