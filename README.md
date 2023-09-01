@@ -19,22 +19,18 @@
 
 - Will need to create settings.json file in directory with bot.js and use following template.
 
-    <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto; display: flex; flex-flow: column;">
-
 `{
-"twitch": {
-"username": "Twitch Bot Name",
-"password": "oauth:key"
-},
-"database": {
-"user": "username",
-"password": "password"
-},
-"defaultChannel": ["Channel for bot to watch initially"],
-"openai": ""
+  "twitch": {
+    "username": "Twitch Bot Name",
+    "password": "oauth:key"
+  },
+  "database": {
+    "user": "username",
+    "password": "password"
+  },
+  "defaultChannel": ["Channel for bot to watch initially"],
+  "openai": ""
 }`
-
-  </div>
 
 ## Current function
 
