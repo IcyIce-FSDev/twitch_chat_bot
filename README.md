@@ -1,20 +1,5 @@
 # Bot Information
 
-# Undergoing revamp
-
-- Revamp current storage system.
-- Roadmap listed below
-
-  ### Step 1
-
-  - Setup so bot initializes with default streamer channel and twitch auth info located in settings.json.
-    - Will setup messages database for future initializations to get list of channels from.
-
-  ### Step 2
-
-  - Setup command `!addStreamer (streamer)` to add streamer to list for bot to join their chat.
-    - Sets up the table to be named after the streamers name.
-
 ## Setup
 
 - Will need to create settings.json file in directory with bot.js and use following template.
@@ -40,16 +25,33 @@
 
 ## Commands list
 
+- `!addStreamer (streamer)`
+
+  - Adds a channel for the bot to join. Creates table in database.
+
+- `!advice`
+
+  - returns a random piece of advice
+
+  ### Not yet implemented in main function
+
+  - `!advice on | off` -
+
+    - Enable or disable bot for channel
+
 ## Utilities
 
 - Saves every message in messages DB in table named after streamer, then by date message received.
+
   - Filters out bot messages
+
+- Debug log in text files
 
 ## Current goals/roadmap
 
-- `!dice`
+- Automation
 
-  - Does a D20 roll and returns with users results
+  - Setup up so sql will setup settings database automatically
 
 - `!advice`
 

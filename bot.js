@@ -5,6 +5,8 @@ const settings = require("./settings.json");
 // SQL utilities for bot to run
 const { getListOfChannels } = require("./utilities/sql/bot.settings");
 const { postMessage, postChannel } = require("./utilities/sql/bot.messages");
+const { getAdivce } = require("./commands/advice");
+const { appendToLogFile } = require("./utilities/Logging/bot.logging");
 
 // Opts for the client
 let opts = {
@@ -92,6 +94,22 @@ async function onMessageHandler(target, context, msg, self) {
       return;
     }
 
+    if (msg.startsWith("!advice")) {
+      const package = { target, context, msg, client };
+      getAdivce(package);
+      return;
+    }
+
+    if (msg.startsWith("!portfolio") && target == "#monkayshrek") {
+      client.say(target, `https://icy-ice-fs-dev.vercel.app`);
+      return;
+    }
+
+    if (msg.startsWith("!github") && target == "#monkayshrek") {
+      client.say(target, `https://github.com/IcyIce-FSDev`);
+      return;
+    }
+
     return;
   }
 
@@ -100,29 +118,25 @@ async function onMessageHandler(target, context, msg, self) {
 
 // Event Handler called every time the bot connects to Twitch chat
 function onConnectedHandler(addr, port) {
-  const time = new Date();
-  const template = `[${time}] : * Connected to ${addr}:${port}`;
+  const template = `* Connected to ${addr}:${port}`;
+  appendToLogFile(template);
   console.log(template);
 }
 
 // What happens when disconnected
 function onDisconnectHandler(addr, port) {
-  const time = new Date();
-  const template = `[${time}] : * Disconnected from ${addr}:${port}`;
-  console.log(template);
+  const template = `* Disconnected from ${addr}:${port}`;
+  appendToLogFile(template);
 }
 
 // What happens when it's reconnecting
 function onReconnectHandler() {
-  const time = new Date();
-  const template = `[${time}] : * Attempting to reconnect to twitch`;
-  console.log(template);
+  const template = `* Attempting to reconnect to twitch`;
+  appendToLogFile(template);
 }
 
 // What happens when status ping is sent
 function pingSentHandler(latency) {
-  // filepath for pulse check log
-  const time = new Date();
-  const template = `[${time}] : * Pulse Check, latency: ${latency}ms`;
-  console.log(template);
+  const template = `* Pulse Check, latency: ${latency}ms`;
+  appendToLogFile(template);
 }
