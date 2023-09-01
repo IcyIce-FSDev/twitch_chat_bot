@@ -21,7 +21,7 @@
 
     <div style="border: 1px solid #ccc; padding: 10px; background-color: #f4f4f4; margin: 0 auto;">
 
-{
+`{
 "twitch": {
 "username": "Twitch Bot Name",
 "password": "oauth:key"
@@ -32,9 +32,9 @@
 },
 "defaultChannel": ["Channel for bot to watch initially"],
 "openai": ""
-}
+}`
 
-    </div>
+  </div>
 
 ## Current function
 
