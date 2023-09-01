@@ -46,7 +46,7 @@
 
 ## Utilities
 
-- Saves every message in channel folder then by date message received
+- Saves every message in messages DB in table named after streamer, then by date message received.
   - Filters out bot messages
 
 ## Current goals/roadmap
