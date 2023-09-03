@@ -82,7 +82,7 @@ module.exports = {
       const query = {
         text: `CREATE TABLE ${tableName} (
           id SERIAL PRIMARY KEY,
-          time TIMESTAMP NOT NULL,
+          time TIMESTAMPTZ NOT NULL,
           username VARCHAR NOT NULL,
           message VARCHAR NOT NULL,
           info JSON NOT NULL

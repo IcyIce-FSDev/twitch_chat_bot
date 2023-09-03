@@ -5,8 +5,9 @@ const settings = require("./settings.json");
 // SQL utilities for bot to run
 const { getListOfChannels } = require("./utilities/sql/bot.settings");
 const { postMessage, postChannel } = require("./utilities/sql/bot.messages");
-const { getAdivce } = require("./commands/advice");
+const { getAdivce } = require("./commands/Advice/advice");
 const { appendToLogFile } = require("./utilities/Logging/bot.logging");
+const { handleCommands } = require("./commands/commandHandler");
 
 // Opts for the client
 let opts = {
@@ -66,53 +67,11 @@ async function onMessageHandler(target, context, msg, self) {
   }
 
   if (msg.startsWith("!")) {
-    // Command to add a streamer for the bot to join
-    if (msg.startsWith("!addStreamer")) {
-      if (user == "monkayshrek") {
-        await postChannel(msg, (bot = client), target);
-
-        await client
-          .disconnect()
-          .then((data) => {
-            // data returns [server, port]
-            onDisconnectHandler(data[0], data[1]);
-
-            getChannels();
-          })
-          .catch((err) => {
-            // Logging error
-            console.log(err);
-          });
-
-        await client.connect().catch((err) => {
-          // Logging error
-          console.log(err);
-        });
-
-        return;
-      }
-      return;
-    }
-
-    if (msg.startsWith("!advice")) {
-      const package = { target, context, msg, client };
-      getAdivce(package);
-      return;
-    }
-
-    if (msg.startsWith("!portfolio") && target == "#monkayshrek") {
-      client.say(target, `https://icy-ice-fs-dev.vercel.app`);
-      return;
-    }
-
-    if (msg.startsWith("!github") && target == "#monkayshrek") {
-      client.say(target, `https://github.com/IcyIce-FSDev`);
-      return;
-    }
-
+    handleCommands(client, target, msg, context);
     return;
   }
 
+  // Saves message to database
   postMessage({ target, user, msg, context });
 }
 
