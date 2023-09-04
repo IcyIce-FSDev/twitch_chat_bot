@@ -59,8 +59,8 @@
 
   - Returns the rank of the stream if they set Battletag
 
-  - `!rank (BattleTag#)*`
+    - `!rank (BattleTag#)*`
 
-    - This feature returns the current ranks of provided user
+      - This feature returns the current ranks of provided user
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
