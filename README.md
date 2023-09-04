@@ -41,6 +41,13 @@
 
     - Enable or disable bot for channel
 
+- `!owrank BattleTag#`
+
+  - This feature returns the current ranks of provided user
+
+- `!owrank Help`
+  - Returns how to use !owrank
+
 ## Utilities
 
 - Saves every message in messages DB in table named after streamer, then by date message received.
@@ -54,10 +61,6 @@
 - `!owrank`
 
   - Returns the rank of the stream if they set Battletag
-
-    - `!owrank BattleTag#`
-
-      - This feature returns the current ranks of provided user
 
 - `!advice random on | off`
 
