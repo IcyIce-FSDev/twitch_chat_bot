@@ -21,6 +21,10 @@
 
 - Bot will receive and record data from Twitch chats. It will store them in a folder base storage system.
 
+- Automation
+
+  - Setup up so sql will setup settings database automatically
+
 ## Require Modules to use
 
 ## Commands list
@@ -32,8 +36,6 @@
 - `!advice`
 
   - returns a random piece of advice
-
-  ### Not yet implemented in main function
 
   - `!advice on | off` -
 
@@ -49,23 +51,9 @@
 
 ## Current goals/roadmap
 
-- Automation
+- `!advice random on | off`
 
-  - Setup up so sql will setup settings database automatically
-
-- `!advice`
-
-  - This feature gets a random slip of advice from https://api.adviceslip.com/advice
-
-  - Develop `!advice` further to include below features
-
-    - `!advice on | off`
-
-      - Enables or disables the command to in individuals chat
-
-    - `!advice random on | off`
-
-      - Allows for bot to random trigger messages in the channel
+  - Allows for bot to random trigger messages in the channel
 
 - `!rank`
 
