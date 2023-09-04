@@ -51,16 +51,16 @@
 
 ## Current goals/roadmap
 
-- `!advice random on | off`
-
-  - Allows for bot to random trigger messages in the channel
-
-- `!rank`
+- `!owrank`
 
   - Returns the rank of the stream if they set Battletag
 
-    - `!rank (BattleTag#)*`
+    - `!owrank BattleTag#`
 
       - This feature returns the current ranks of provided user
+
+- `!advice random on | off`
+
+  - Allows for bot to random trigger messages in the channel
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.

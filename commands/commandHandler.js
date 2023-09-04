@@ -1,10 +1,17 @@
 const { postChannel } = require("../utilities/sql/bot.messages");
 const { adivce } = require("./Advice/advice");
+const { overwatch } = require("./Overwatch/overwatch");
 
 module.exports.handleCommands = async (client, target, msg, context) => {
+  const package = { client, target, msg, context };
+
   if (msg.startsWith("!advice")) {
-    const package = { target, context, msg, client };
     adivce(package);
+    return;
+  }
+
+  if (msg.startsWith("!ow")) {
+    overwatch(package);
     return;
   }
 
