@@ -1,15 +1,30 @@
-const { postPowerMode } = require("../../utilities/sql/bot.advice");
+const {
+  postPowerMode,
+  getPowerMode,
+} = require("../../utilities/sql/bot.advice");
 
-module.exports.getAdivce = async (package) => {
+module.exports.adivce = async (package) => {
   const { target, context, msg, client } = package;
 
   // Should get second word like in !advice off, it will return "off"
   const secondWord = getTextBetweenFirstTwoSpacesOrToEnd(msg);
 
+  // This is to turn function on or off for specific chat
   if (secondWord == "on" || secondWord == "off") {
     const resp = await postPowerMode(secondWord, target);
     client.say(target, `Turning ${resp} advice feature`);
     return;
+  }
+
+  // If second word is channel, will look for third word
+  if (secondWord == "channel") {
+    const thirdWord = getTextBetweenSecondAndThirdSpacesOrToEnd(msg);
+
+    if (thirdWord) {
+      const randomAdvice = await getRandomAdvice();
+      client.say(`#${thirdWord}`, randomAdvice);
+      return;
+    }
   }
 
   // This should be a string "!advice"
@@ -17,13 +32,21 @@ module.exports.getAdivce = async (package) => {
 
   // Gets random slip of advice
   if (mainCmd === "!advice") {
-    const randomAdvice = await getRandomAdvice();
-    client.say(target, randomAdvice);
-    return;
+    const setting = await getPowerMode(target);
+
+    if (setting == "on") {
+      const randomAdvice = await getRandomAdvice();
+      client.say(target, randomAdvice);
+      return;
+    }
+
+    if (setting == "off") {
+      return;
+    }
   }
 };
 
-// function to get target input
+// function to get second word in !advice command input
 function getTextBetweenFirstTwoSpacesOrToEnd(inputString) {
   const spaceIndexes = [];
   for (let i = 0; i < inputString.length; i++) {
@@ -41,6 +64,26 @@ function getTextBetweenFirstTwoSpacesOrToEnd(inputString) {
   }
 
   return null; // Return null if there are no spaces
+}
+
+// function to get the third word in !advice command input
+function getTextBetweenSecondAndThirdSpacesOrToEnd(inputString) {
+  const spaceIndexes = [];
+  for (let i = 0; i < inputString.length; i++) {
+    if (inputString[i] === " ") {
+      spaceIndexes.push(i);
+    }
+    if (spaceIndexes.length === 3) {
+      return inputString.substring(spaceIndexes[2] + 1);
+    }
+  }
+
+  // If there are fewer than three spaces, return the portion from the second space to the end
+  if (spaceIndexes.length === 2) {
+    return inputString.substring(spaceIndexes[1] + 1);
+  }
+
+  return null; // Return null if there are fewer than two spaces
 }
 
 async function getRandomAdvice() {

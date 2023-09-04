@@ -51,6 +51,8 @@ module.exports = {
     const message = msgObj.msg;
     const timestamp = new Date();
 
+    console.log(`[${timestamp}] - ${channelName} : ${username} - ${message}`);
+
     // Attempts to add message
     try {
       const query = {

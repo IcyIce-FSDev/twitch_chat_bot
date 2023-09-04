@@ -1,6 +1,5 @@
 var Pool = require("pg-pool");
 const settings = require("../../settings.json");
-const { client } = require("tmi.js");
 
 // Worker pool for DB
 var database = new Pool({
@@ -34,7 +33,7 @@ async function tableCheck(streamerName) {
     };
 
     try {
-      const resp = await client.query(query);
+      await client.query(query);
 
       return true;
     } catch (error) {
@@ -52,7 +51,7 @@ async function updatePowerMode(streamerName, setting) {
   const client = await database.connect();
 
   const opts = {
-    power: setting,
+    power: setting ? setting : "off",
     timer: {
       type: "messages", // Can be messages or time
       cooldown: "0", // If messages will be counter, if time will be how long til next advice
@@ -89,6 +88,36 @@ async function updatePowerMode(streamerName, setting) {
   }
 }
 
+// Function to get the power mode setting for advice settings
+async function checkPowerMode(streamerName) {
+  const client = await database.connect();
+
+  try {
+    const query = {
+      text: `
+    SELECT advice->>'power' AS power_value
+    FROM ${streamerName}
+    WHERE id = 1;
+    `,
+    };
+
+    try {
+      const resp = await client.query(query);
+
+      if (resp.rowCount > 0) {
+        return resp.rows[0].power_value;
+      }
+
+      if (resp.rowCount == 0) {
+        return "off";
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  } finally {
+  }
+}
+
 module.exports = {
   // Function to turn on | off bot. Will create table for streamer if none found
   postPowerMode: async (setting, target) => {
@@ -99,5 +128,12 @@ module.exports = {
     if (table) {
       return updatePowerMode(streamerName, setting);
     }
+  },
+  getPowerMode: async (target) => {
+    const streamerName = removeHashFromString(target);
+
+    await tableCheck(streamerName);
+
+    return await checkPowerMode(streamerName);
   },
 };
