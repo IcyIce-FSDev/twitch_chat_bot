@@ -10,7 +10,7 @@ module.exports.handleCommands = async (client, target, msg, context) => {
     return;
   }
 
-  if (msg.startsWith("!ow")) {
+  if (msg.startsWith("!ow") || msg.startsWith("!realOW")) {
     overwatch(package);
     return;
   }

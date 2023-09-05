@@ -1,4 +1,5 @@
 const { postOWJson } = require("../../utilities/sql/bot.overwatch");
+const { funnyOW } = require("./funny");
 
 module.exports.overwatch = async (package) => {
   const { client, target, msg, context } = package;
@@ -9,6 +10,14 @@ module.exports.overwatch = async (package) => {
       target,
       `@${context.username} To use the look up feature, please do "!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)" all without the parentheses`
     );
+    return;
+  }
+
+  // Funny troll
+  if (msg.startsWith("!realOW")) {
+    const formatMessage = funnyOW(msg);
+    console.log(msg);
+    client.say(target, `${formatMessage}`);
     return;
   }
 
@@ -50,10 +59,11 @@ async function getOWRank(playerInfoForSearch) {
   const urlToFetch = `https://ow-api.com/v1/stats/${platform}/${region}/${battletag}/profile`;
 
   const response = await fetch(urlToFetch);
+  const jsonResp = await response.json();
 
-  await postOWJson(battletag, response);
+  const btag = battletag.replace("-", "#");
 
-  const { private, ratings } = await response.json();
+  const { private, ratings } = jsonResp;
 
   // Starts construction to return ranks
   let tank = `Tank: unranked`;
@@ -69,6 +79,8 @@ async function getOWRank(playerInfoForSearch) {
   if (ratings === null) {
     return `Sorry they don't have any ranks in OW2`;
   }
+
+  await postOWJson(btag, jsonResp);
 
   // Reviews each rating object and assigns to appropriate variables
   if (ratings) {
@@ -97,13 +109,7 @@ async function getOWRank(playerInfoForSearch) {
 
   // Statement regarding uses ranks
   const statement =
-    battletag.replace("-", "#") +
-    " ranks are " +
-    tank +
-    " | " +
-    offense +
-    " | " +
-    support;
+    btag + " ranks are " + tank + " | " + offense + " | " + support;
 
   return statement;
 }

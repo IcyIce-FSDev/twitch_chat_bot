@@ -41,12 +41,18 @@
 
     - Enable or disable bot for channel
 
+- `!owrank Help`
+
+  - Returns how to use !owrank
+
 - `!owrank BattleTag#`
 
   - This feature returns the current ranks of provided user
+  - To use do "!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)" all without the parentheses
 
-- `!owrank Help`
-  - Returns how to use !owrank
+- `!realOW BattleTag#`
+
+  - Returns a randomly generated ranks
 
 ## Utilities
 
@@ -61,9 +67,5 @@
 - `!owrank`
 
   - Returns the rank of the stream if they set Battletag
-
-- `!advice random on | off`
-
-  - Allows for bot to random trigger messages in the channel
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
