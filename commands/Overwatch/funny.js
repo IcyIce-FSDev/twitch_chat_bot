@@ -25,7 +25,7 @@ function getRandomRank() {
     { rank: "Gold", weight: 3 },
     { rank: "Platinum", weight: 3 },
     { rank: "Diamond", weight: 2 },
-    { rank: "Master", weight: 1 },
+    { rank: "Master", weight: 2 },
     { rank: "Grandmaster", weight: 1 },
   ];
 

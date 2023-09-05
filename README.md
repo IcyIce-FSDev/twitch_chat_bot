@@ -2,20 +2,11 @@
 
 ## Setup
 
-- Will need to create settings.json file in directory with bot.js and use following template.
-
-`{
-  "twitch": {
-    "username": "Twitch Bot Name",
-    "password": "oauth:key"
-  },
-  "database": {
-    "user": "username",
-    "password": "password"
-  },
-  "defaultChannel": ["Channel for bot to watch initially"],
-  "openai": ""
-}`
+- To start make sure node.js and postgres database is installed
+- Then run node setup.js
+  - This will ensure neccessary dependecies are installed
+  - This will then enter a guided process to create settings.json
+  - Once done will then create databases and tables as needed
 
 ## Current function
 

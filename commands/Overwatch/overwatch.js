@@ -16,7 +16,6 @@ module.exports.overwatch = async (package) => {
   // Funny troll
   if (msg.startsWith("!realOW")) {
     const formatMessage = funnyOW(msg);
-    console.log(msg);
     client.say(target, `${formatMessage}`);
     return;
   }
