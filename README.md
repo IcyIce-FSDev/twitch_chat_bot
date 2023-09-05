@@ -45,12 +45,12 @@
 
   - Returns how to use !owrank
 
-- `!owrank BattleTag#`
+- `!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)`
 
   - This feature returns the current ranks of provided user
   - To use do "!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)" all without the parentheses
 
-- `!realOW BattleTag#`
+- `!realOW BattleTag`
 
   - Returns a randomly generated ranks
 
