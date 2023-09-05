@@ -19,11 +19,7 @@
 
 ## Current function
 
-- Bot will receive and record data from Twitch chats. It will store them in a folder base storage system.
-
-- Automation
-
-  - Setup up so sql will setup settings database automatically
+- Bot will receive and record data from Twitch chats, will also respond to chat commands as listed below
 
 ## Require Modules to use
 
@@ -69,3 +65,7 @@
   - Returns the rank of the stream if they set Battletag
 
 - Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
+
+- Automation
+
+  - Setup up seed sql that will setup databases automatically
