@@ -20,11 +20,11 @@ module.exports.funnyOW = (inputString) => {
 function getRandomRank() {
   // Define the ranks and their divisions with custom probabilities
   const rankProbabilities = [
-    { rank: "Bronze", weight: 5 },
-    { rank: "Silver", weight: 5 },
-    { rank: "Gold", weight: 3 },
-    { rank: "Platinum", weight: 3 },
-    { rank: "Diamond", weight: 2 },
+    { rank: "Bronze", weight: 7 },
+    { rank: "Silver", weight: 6 },
+    { rank: "Gold", weight: 5 },
+    { rank: "Platinum", weight: 4 },
+    { rank: "Diamond", weight: 3 },
     { rank: "Master", weight: 2 },
     { rank: "Grandmaster", weight: 1 },
   ];
