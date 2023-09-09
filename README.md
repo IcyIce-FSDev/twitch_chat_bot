@@ -14,6 +14,8 @@
 
 ## Require Modules to use
 
+["pg-pool", "pg", "tmi.js"]
+
 ## Commands list
 
 - `!addStreamer (streamer)`
