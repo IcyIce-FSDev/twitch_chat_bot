@@ -106,4 +106,42 @@ module.exports = {
       client.release();
     }
   },
+  getListOfChannels: async () => {
+    // Variable to hold results
+    let channelsResult = [];
+
+    // Starts connection to database
+    const client = await database.connect();
+
+    // Tries to find tables
+    try {
+      // Attempts query search
+      try {
+        const result = await client.query(`
+           SELECT table_name
+           FROM information_schema.tables
+           WHERE table_schema = 'public';
+         `);
+        // if results found adds results to array
+        if (result) {
+          result.rows.forEach((chat) => {
+            channelsResult.push(chat.table_name);
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } finally {
+      // Release DB connection
+      client.release();
+    }
+
+    // If no tables found then will return default channel from settings
+    if (channelsResult.length === 0) {
+      channelsResult = settings.defaultChannel;
+      postChannel("#" + settings.defaultChannel[0]);
+    }
+
+    return channelsResult;
+  },
 };

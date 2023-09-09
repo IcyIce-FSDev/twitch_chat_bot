@@ -3,9 +3,12 @@ const tmi = require("tmi.js");
 // Retrieve settings for bot
 const settings = require("./settings.json");
 // SQL utilities for bot to run
-const { getListOfChannels } = require("./utilities/sql/bot.settings");
-const { postMessage, postChannel } = require("./utilities/sql/bot.messages");
-const { getAdivce } = require("./commands/Advice/advice");
+const {
+  postMessage,
+  postChannel,
+  getListOfChannels,
+} = require("./utilities/sql/bot.messages");
+
 const { appendToLogFile } = require("./utilities/Logging/bot.logging");
 const { handleCommands } = require("./commands/commandHandler");
 

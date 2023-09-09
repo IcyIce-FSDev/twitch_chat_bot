@@ -151,7 +151,8 @@ async function createTable(string, tableName) {
       const defaultChannelTableSettingsQuery = `
           CREATE TABLE IF NOT EXISTS ${tableName} (
             id SERIAL PRIMARY KEY,
-            advice JSON
+            advice JSON,
+            owrank JSON
           );
         `;
 

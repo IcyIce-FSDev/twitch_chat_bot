@@ -1,7 +1,7 @@
 const {
   postPowerMode,
   getPowerMode,
-} = require("../../utilities/sql/bot.advice");
+} = require("../../utilities/sql/bot.settings");
 
 module.exports.adivce = async (package) => {
   const { target, context, msg, client } = package;

@@ -1,17 +1,9 @@
 const { postOWJson } = require("../../utilities/sql/bot.overwatch");
 const { funnyOW } = require("./funny");
+const { getStreamerBTag } = require("../../utilities/sql/bot.settings");
 
 module.exports.overwatch = async (package) => {
   const { client, target, msg, context } = package;
-
-  // Help for the bot commands
-  if (msg == "!owrank help") {
-    client.say(
-      target,
-      `@${context.username} To use the look up feature, please do "!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)" all without the parentheses`
-    );
-    return;
-  }
 
   // Funny troll
   if (msg.startsWith("!realOW")) {
@@ -22,13 +14,43 @@ module.exports.overwatch = async (package) => {
 
   // Start of looking up an OW rank
   if (msg.startsWith("!owrank")) {
-    // Parses the message to get format data
-    const playerInfoForSearch = parsePlayerInfo(msg);
+    // Help for the bot commands
+    if (msg == "!owrank help") {
+      client.say(
+        target,
+        `@${context.username} To use the look up feature, please do "!owrank (pc/psn/xbl/switch) (us/eu/asia) (battletag)" all without the parentheses`
+      );
+      return;
+    }
 
-    // Gets the OW ranks return as string formated to send
+    // If reached here, searching for player info.
+    // Parses the message to get format data
+    const regex = /^!owrank\s+(\S+)\s+(\S+)\s+([^\s]+)/;
+    const match = msg.match(regex);
+
+    if (match) {
+      const playerInfoForSearch = parsePlayerInfo(msg);
+
+      // Gets the OW ranks return as string formated to send
+      const ranksStatment = await getOWRank(playerInfoForSearch);
+
+      client.say(target, ranksStatment);
+      return;
+    }
+
+    // No other commands recognized, returns Streamers rank
+    const streamerOWSettings = await getStreamerBTag(target);
+
+    const { battletag, platform, region } = streamerOWSettings;
+
+    const battleTag = battletag.replace("#", "-");
+
+    const playerInfoForSearch = { platform, region, battleTag };
+
     const ranksStatment = await getOWRank(playerInfoForSearch);
 
     client.say(target, ranksStatment);
+
     return;
   }
 
@@ -45,22 +67,22 @@ function parsePlayerInfo(inputString) {
 
   const platform = match[1].trim(); // "pc/psn/xbl/switch"
   const region = match[2].trim(); // "us/eu/asia"
-  let battletag = match[3].trim(); // "battletag#1234"
+  let battleTag = match[3].trim(); // "battletag#1234"
 
   // Replace '#' with '-'
-  battletag = battletag.replace("#", "-");
+  battleTag = battleTag.replace("#", "-");
 
-  return { platform, region, battletag };
+  return { platform, region, battleTag };
 }
 
 async function getOWRank(playerInfoForSearch) {
-  const { platform, region, battletag } = playerInfoForSearch;
-  const urlToFetch = `https://ow-api.com/v1/stats/${platform}/${region}/${battletag}/profile`;
+  const { platform, region, battleTag } = playerInfoForSearch;
+  const urlToFetch = `https://ow-api.com/v1/stats/${platform}/${region}/${battleTag}/profile`;
 
   const response = await fetch(urlToFetch);
   const jsonResp = await response.json();
 
-  const btag = battletag.replace("-", "#");
+  const btag = battleTag.replace("-", "#");
 
   const { private, ratings } = jsonResp;
 
@@ -76,7 +98,7 @@ async function getOWRank(playerInfoForSearch) {
 
   // If profile has no ratings will return such
   if (ratings === null) {
-    return `Sorry they don't have any ranks in OW2`;
+    return `Sorry they don't have any ranks in OW2 or profile doesn't exist`;
   }
 
   await postOWJson(btag, jsonResp);
