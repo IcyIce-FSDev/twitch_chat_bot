@@ -1,4 +1,4 @@
-# Bot Information
+# OWrank Chat Bot and Advice Generator
 
 ## Setup
 
