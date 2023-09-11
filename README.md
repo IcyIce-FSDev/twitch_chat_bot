@@ -2,7 +2,7 @@
 
 ## Setup
 
-- To start make sure node.js and postgres database is installed
+- To start make sure node.js, postgresql, and npm is installed
 - Then run node setup.js
   - This will ensure neccessary dependecies are installed
   - This will then enter a guided process to create settings.json
@@ -26,7 +26,7 @@
 
   - returns a random piece of advice
 
-  - `!advice on | off` -
+  - `!advice on | off`
 
     - Enable or disable bot for channel
 
@@ -56,5 +56,3 @@
 - Debug log in text files
 
 ## Current goals/roadmap
-
-- Develop function where a user mentions bot and the bot will take the message and feed through chatGPT and respond with the data from chatGPT.
