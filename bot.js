@@ -64,7 +64,8 @@ async function onMessageHandler(target, context, msg, self) {
     user == "nightbot" ||
     user == "streamelements" ||
     user == "wizebot" ||
-    user == "pokemoncommunitygame"
+    user == "pokemoncommunitygame" ||
+    user == "streamlabs"
   ) {
     return;
   }

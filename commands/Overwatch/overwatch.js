@@ -101,6 +101,10 @@ async function getOWRank(playerInfoForSearch) {
     return `Sorry they don't have any ranks in OW2 or profile doesn't exist`;
   }
 
+  if (jsonResp.error) {
+    return `Error: ${jsonResp.error} or Battletag`;
+  }
+
   await postOWJson(btag, jsonResp);
 
   // Reviews each rating object and assigns to appropriate variables
